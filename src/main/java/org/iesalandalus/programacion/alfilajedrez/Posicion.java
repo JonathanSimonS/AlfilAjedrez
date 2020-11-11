@@ -8,7 +8,8 @@ public class Posicion {
 
 	// CONTRUCTORES
 	public Posicion(int fila, char columna) {
-		// COMPROBAR ESTA EXCEPCION EN UN FUTURO
+		// COMPROBAR ESTA EXCEPCION EN UN FUTURO - IllegalArgumentException
+		// null no será un valor permitido
 		try {
 			this.fila = fila;
 			this.columna = columna;
@@ -19,7 +20,7 @@ public class Posicion {
 
 	// CONSTRUCTOR COPIA
 	public Posicion(Posicion posicion) {
-		
+
 	}
 
 	// METODOS GET Y SET
@@ -74,10 +75,5 @@ public class Posicion {
 	public String toString() {
 		return "Posicion= " + fila + columna;
 	}
-	
-	
-	
-	
-	
 
 }
