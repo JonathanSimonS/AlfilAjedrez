@@ -8,13 +8,18 @@ public class Posicion {
 
 	// CONTRUCTORES
 	public Posicion(int fila, char columna) {
-		//COMPROBAR ESTA EXCEPCION EN UN FUTURO
+		// COMPROBAR ESTA EXCEPCION EN UN FUTURO
 		try {
 			this.fila = fila;
 			this.columna = columna;
 		} catch (IllegalArgumentException e) {
 			System.out.println("Los valores introducidos no son correctos.");
 		}
+	}
+
+	// CONSTRUCTOR COPIA CREADO
+	public Posicion(Posicion posicion) {
+		
 	}
 
 	// METODOS GET Y SET
