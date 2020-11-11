@@ -6,6 +6,14 @@ public class Alfil {
 	private Color color;
 	private Posicion posicion;
 
+	
+	// alfil negro en la posición '8f'.
+	//CONTRUCTORES
+	public Alfil() {
+		this.color=Color.NEGRO;
+		Posicion posicion = new Posicion(8, 'f');
+	}
+
 	// METODOS GET Y SET
 	public Color getColor() {
 		return color;

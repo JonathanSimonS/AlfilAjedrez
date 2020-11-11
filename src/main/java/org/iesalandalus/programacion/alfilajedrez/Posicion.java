@@ -8,8 +8,7 @@ public class Posicion {
 
 	// CONTRUCTORES
 	public Posicion(int fila, char columna) {
-		// COMPROBAR ESTA EXCEPCION EN UN FUTURO - IllegalArgumentException
-		// null no será un valor permitido
+		// IllegalArgumentException null no será un valor permitido
 		try {
 			this.fila = fila;
 			this.columna = columna;
