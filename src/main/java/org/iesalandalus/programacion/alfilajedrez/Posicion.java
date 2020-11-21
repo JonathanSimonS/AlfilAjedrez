@@ -13,8 +13,9 @@ public class Posicion {
 	}
 
 	// CONSTRUCTOR COPIA
-	public Posicion(Posicion posicion) {
-
+	public Posicion(Posicion e) throws IllegalArgumentException{
+		setFila(e.getFila());
+		setColumna(e.getColumna());
 	}
 
 	// METODOS GET Y SET
