@@ -9,14 +9,20 @@ public class Alfil {
 	// CONTRUCTORES
 	public Alfil() {
 		this.color = Color.NEGRO;
-		Posicion posicion = new Posicion(8, 'f');
+		posicion = new Posicion(8, 'f');
 	}
+
 	public Alfil(Color color) {
 		if (color.equals(Color.NEGRO)) {
-			Posicion posicion = new Posicion(8, 'f');
+			posicion = new Posicion(8, 'f');
 		}
-			Posicion posicion = new Posicion(1, 'f');
+		posicion = new Posicion(1, 'f');
 	}
+	public Alfil(Color color, char columna) {
+		this.color=color;
+		//this.columna
+		//IllegalArgumentException con columna
+}
 
 	// METODOS GET Y SET
 	public Color getColor() {
