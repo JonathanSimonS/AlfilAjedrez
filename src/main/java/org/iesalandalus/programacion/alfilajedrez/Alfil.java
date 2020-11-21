@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
+import empresa.Seccion;
+
 public class Alfil {
 
 	// ATRIBUTOS
@@ -18,11 +20,12 @@ public class Alfil {
 		}
 		posicion = new Posicion(1, 'f');
 	}
+
 	public Alfil(Color color, char columna) {
-		this.color=color;
-		//this.columna
-		//IllegalArgumentException con columna
-}
+		this.color = color;
+		// this.columna
+		// IllegalArgumentException con columna
+	}
 
 	// METODOS GET Y SET
 	public Color getColor() {
@@ -30,10 +33,10 @@ public class Alfil {
 	}
 
 	// NullPointerException PORQUE ESTARIAMOS TRATANDO DE USAR UNA VARIABLE NULA
+	// (OBJETO)
 	private void setColor(Color color) {
-		if (color == null) {
-			throw new NullPointerException("El color no puede ser nulo ni vacío.");
-		}
+		if (color == null)
+			throw new NullPointerException("ERROR: El color no puede ser nulo.");
 		this.color = color;
 	}
 
@@ -42,9 +45,8 @@ public class Alfil {
 	}
 
 	private void setPosicion(Posicion posicion) {
-		if (posicion == null) {
-			throw new NullPointerException("La posicion no puede ser nula ni vacía.");
-		}
+		if (posicion == null)
+			throw new NullPointerException("ERROR: La posicion no puede ser nula.");
 		this.posicion = posicion;
 	}
 
