@@ -8,21 +8,30 @@ public class Alfil {
 
 	// CONTRUCTORES
 	public Alfil() throws NullPointerException {
-		setColor(Color.NEGRO);
-		posicion = new Posicion(8, 'h'); // aquí tengo que llamar al constructor de la clase Posicion
+		color= Color.NEGRO;
+		posicion = new Posicion(8, 'f');
 	}
 
-	public Alfil(Color color) {
-		if (color.equals(Color.NEGRO)) {
+	public Alfil(Color color) throws NullPointerException {
+		if (color == null)
+			throw new NullPointerException("ERROR: El color del alfil no puede ser nulo");
+		setColor(color);
+		if (color.equals(Color.NEGRO))
 			posicion = new Posicion(8, 'f');
-		}
-		posicion = new Posicion(1, 'f');
+		else
+			posicion = new Posicion(1, 'f');
 	}
-
-	public Alfil(Color color, char columna) {
-		this.color = color;
-		// this.columna
-		// IllegalArgumentException con columna
+	
+	public Alfil(Color color, char columna) throws NullPointerException, IllegalArgumentException {
+		if (color == null)
+			throw new NullPointerException("ERROR: El color del alfil no puede ser nulo");
+		setColor(color);
+		if ((columna!='c') || (columna!='f'))
+			throw new IllegalArgumentException("ERROR: La columna inicial de un alfil debe de ser 'c' o 'f'.");
+		if (color.equals(Color.NEGRO))
+			posicion = new Posicion(8, columna);
+		else
+			posicion = new Posicion(1, columna);
 	}
 
 	// METODOS GET Y SET
@@ -39,13 +48,13 @@ public class Alfil {
 	}
 
 	public Posicion getPosicion() {
-		return posicion;
+		return new Posicion(posicion);
 	}
 
 	private void setPosicion(Posicion posicion) {
 		if (posicion == null)
 			throw new NullPointerException("ERROR: La posicion no puede ser nula.");
-		this.posicion = posicion;
+		this.posicion = new Posicion(posicion);
 	}
 
 }

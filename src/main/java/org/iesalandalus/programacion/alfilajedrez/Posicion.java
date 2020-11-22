@@ -11,12 +11,7 @@ public class Posicion {
 		setFila(fila);
 		setColumna(columna);
 	}
-				public static void main(String[] args) 
-				{
-					Posicion posicionDefecto;
-					posicionDefecto = new Posicion(4, 'b');
-					System.out.println(posicionDefecto);
-				}
+
 	// CONSTRUCTOR COPIA
 	public Posicion(Posicion e){
 		if(e==null)
