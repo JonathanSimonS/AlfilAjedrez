@@ -11,9 +11,11 @@ public class Posicion {
 		setFila(fila);
 		setColumna(columna);
 	}
-
+	
 	// CONSTRUCTOR COPIA
-	public Posicion(Posicion e) throws IllegalArgumentException{
+	public Posicion(Posicion e){
+		if(e==null)
+			throw new NullPointerException("ERROR: No se puede copiar un objeto Posicion nulo");
 		setFila(e.getFila());
 		setColumna(e.getColumna());
 	}

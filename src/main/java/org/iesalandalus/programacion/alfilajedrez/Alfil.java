@@ -1,19 +1,20 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
-import empresa.Seccion;
 
 public class Alfil {
 
 	// ATRIBUTOS
 	private Color color;
 	private Posicion posicion;
-
+	
 	// CONTRUCTORES
-	public Alfil() {
-		this.color = Color.NEGRO;
-		posicion = new Posicion(8, 'f');
+	public Alfil() throws NullPointerException{
+		setColor(Color.NEGRO);
+		setPosicion('8f');
 	}
-
+	
+	
+	
 	public Alfil(Color color) {
 		if (color.equals(Color.NEGRO)) {
 			posicion = new Posicion(8, 'f');
