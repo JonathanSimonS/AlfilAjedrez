@@ -1,20 +1,17 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
-
 public class Alfil {
 
 	// ATRIBUTOS
 	private Color color;
 	private Posicion posicion;
-	
+
 	// CONTRUCTORES
-	public Alfil() throws NullPointerException{
+	public Alfil() throws NullPointerException {
 		setColor(Color.NEGRO);
-		setPosicion('8f');
+		posicion = new Posicion(8, 'h'); // aquí tengo que llamar al constructor de la clase Posicion
 	}
-	
-	
-	
+
 	public Alfil(Color color) {
 		if (color.equals(Color.NEGRO)) {
 			posicion = new Posicion(8, 'f');
