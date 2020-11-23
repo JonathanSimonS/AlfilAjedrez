@@ -105,7 +105,7 @@ public class MainApp {
 	}
 
 	private static Direccion elegirDireccion() {
-		
+
 		int opcion;
 		do {
 			System.out.println("Elige una dirección");
@@ -118,7 +118,7 @@ public class MainApp {
 		Direccion direccion = Direccion.ABAJO_DERECHA;
 		switch (opcion) {
 		case 1:
-			direccion  = Direccion.ARRIBA_DERECHA;
+			direccion = Direccion.ARRIBA_DERECHA;
 			break;
 		case 2:
 			direccion = Direccion.ARRIBA_IZQUIERDA;
@@ -134,15 +134,33 @@ public class MainApp {
 		}
 		return direccion;
 	}
-	
+
 	private static void crearAlfilDefecto() {
-		Alfil.alfil= new Alfil();
+		Alfil.alfil = new Alfil();
 	}
-	
+
 	private static void crearAlfilColor() {
-		Alfil.alfil= new Alfil(elegirColor());
+		Alfil.alfil = new Alfil(elegirColor());
+	}
+
+	private static void crearAlfilColorColumna() {
+		Alfil.alfil = new Alfil(elegirColor(), elegirColumnaInicial());
+	}
+	/*
+	 * void mover(): Mostrará un menú con las posibles direcciones, nos preguntará
+	 * por la dirección y la cantidad de pasos a mover y moverá el alfil según esos
+	 * parámetros. Este método debe utilizar métodos ya implementados anteriormente.
+	 * Realiza un commit.
+	 */
+
+	private static void mover() {
+		mostrarMenuDirecciones();
+		elegirDireccion();
+	//mover(Direccion direccion, int pasos)		
 	}
 	
-		
+	
+	
+	
 	
 }
