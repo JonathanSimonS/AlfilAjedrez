@@ -16,11 +16,16 @@ public class MainApp {
 		 * 
 		 */
 		int opcion;
-		mostrarAlfil();
+		//mostrarAlfil();
 		mostrarMenu();
 		elegirOpción();
 		elegirColor();
-
+		elegirColumnaInicial();
+		
+		
+		
+		
+		
 	}
 
 	private static void mostrarAlfil() {
@@ -57,6 +62,7 @@ public class MainApp {
 	private static Color elegirColor() {
 		int opcion;
 		do {
+			System.out.println("~~~~~~~~~~~~~~~ ");
 			System.out.println("Elige un color: ");
 			System.out.println("~~~~~~~~~~~~~~~ ");
 			System.out.println("0. BLANCO");
@@ -70,6 +76,23 @@ public class MainApp {
 		else
 			return Color.BLANCO;
 
+	}
+
+	private static char elegirColumnaInicial() {
+		int opcion;
+		do {
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~ ");
+			System.out.println("Elige la columna inicial: ");
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~ ");
+			System.out.println("0. C ");
+			System.out.println("1. F ");
+			System.out.println("");
+			opcion = Entrada.entero();
+		} while (opcion != 0 && opcion != 1);
+		if (opcion == 1)
+			return 'f';
+		else
+			return 'c';
 	}
 
 }
