@@ -26,7 +26,7 @@ public class MainApp {
 	}
 
 	private static void mostrarAlfil() {
-		System.out.println(Alfil.ALFIL);
+		System.out.println(Alfil.alfil);
 	}
 
 	private static void mostrarMenu() {
@@ -136,11 +136,13 @@ public class MainApp {
 	}
 	
 	private static void crearAlfilDefecto() {
-		Alfil alfil;
-		alfil=new Alfil();
+		Alfil.alfil= new Alfil();
 	}
 	
+	private static void crearAlfilColor() {
+		Alfil.alfil= new Alfil(elegirColor());
+	}
 	
-	
+		
 	
 }

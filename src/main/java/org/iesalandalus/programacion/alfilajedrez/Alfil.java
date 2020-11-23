@@ -9,7 +9,7 @@ public class Alfil {
 	private Posicion posicion;
 	private Direccion direccion;
 	private int pasos;
-	public static Alfil ALFIL = new Alfil() ;
+	public static Alfil alfil;
 
 	// CONTRUCTORES
 	public Alfil() {
