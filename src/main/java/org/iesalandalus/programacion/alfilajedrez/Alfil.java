@@ -1,33 +1,37 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Alfil {
 
 	// ATRIBUTOS
 	private Color color;
 	private Posicion posicion;
+	private Direccion direccion;
+	private int pasos;
 
 	// CONTRUCTORES
-	public Alfil() throws NullPointerException {
-		color= Color.NEGRO;
+	public Alfil() {
+		color = Color.NEGRO;
 		posicion = new Posicion(8, 'f');
 	}
 
-	public Alfil(Color color) throws NullPointerException {
+	public Alfil(Color color) {
 		if (color == null)
-			throw new NullPointerException("ERROR: El color del alfil no puede ser nulo");
+			throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
 		setColor(color);
 		if (color.equals(Color.NEGRO))
 			posicion = new Posicion(8, 'f');
 		else
 			posicion = new Posicion(1, 'f');
 	}
-	
-	public Alfil(Color color, char columna) throws NullPointerException, IllegalArgumentException {
+
+	public Alfil(Color color, char columna) {
 		if (color == null)
-			throw new NullPointerException("ERROR: El color del alfil no puede ser nulo");
+			throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
 		setColor(color);
-		if ((columna!='c') || (columna!='f'))
-			throw new IllegalArgumentException("ERROR: La columna inicial de un alfil debe de ser 'c' o 'f'.");
+		if ((columna != 'c') && (columna != 'f'))
+			throw new IllegalArgumentException("ERROR: Columna no válida.");
 		if (color.equals(Color.NEGRO))
 			posicion = new Posicion(8, columna);
 		else
@@ -57,4 +61,60 @@ public class Alfil {
 		this.posicion = new Posicion(posicion);
 	}
 
+	/*
+	 * mover(Direccion, int):void Si no puede realizar dicho movimiento, debido a
+	 * que el alfil se sale del tablero, debe lanzar una excepción del tipo
+	 * OperationNotSupportedException con un mensaje adecuado y no modificará la
+	 * posición del alfil. Realiza un commit.
+	 */
+
+	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
+
+		int nuevaFila = 0;
+		char nuevaColumna = 0;
+		
+		if (direccion == null)
+			throw new NullPointerException("ERROR: La dirección no puede ser nula.");
+		this.direccion = direccion;
+
+		if (pasos <=0)
+			throw new IllegalArgumentException("ERROR: El número de pasos debe ser positivo.");
+		this.pasos = pasos;
+
+		switch (direccion) {
+		case ABAJO_DERECHA:
+			nuevaFila-=nuevaFila;
+			nuevaColumna+=nuevaColumna;
+			// suma columna, resta fila
+			break;
+		case ABAJO_IZQUIERDA:
+			nuevaFila-=nuevaFila;
+			nuevaColumna-=nuevaColumna;
+			// resta columna, resta fila
+			break;
+		case ARRIBA_DERECHA:
+			nuevaFila+=nuevaFila;
+			nuevaColumna+=nuevaColumna;
+			// suma columna, suma fila
+			break;
+		case ARRIBA_IZQUIERDA:
+			nuevaFila+=nuevaFila;
+			nuevaColumna-=nuevaColumna;
+			// resta columna, suma fila
+			break;
+		default:
+		}
+
+		// capturo la posible excepción de la clase Posición
+		try {
+			setPosicion(new Posicion(nuevaFila, nuevaColumna)); 
+		} catch (IllegalArgumentException e) {
+			// TODO: handle exception
+			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+		} // falta arreglar error- TESTALFIL
+	}
+
+	
+
+	
 }
