@@ -9,14 +9,17 @@ public class Alfil {
 	private Posicion posicion;
 	private Direccion direccion;
 	private int pasos;
+	public static Alfil ALFIL = new Alfil() ;
 
 	// CONTRUCTORES
 	public Alfil() {
+		
 		color = Color.NEGRO;
 		posicion = new Posicion(8, 'f');
 	}
 
 	public Alfil(Color color) {
+		
 		if (color == null)
 			throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
 		setColor(color);
@@ -27,15 +30,19 @@ public class Alfil {
 	}
 
 	public Alfil(Color color, char columna) {
+		
 		if (color == null)
 			throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
 		setColor(color);
-		if ((columna != 'c') && (columna != 'f'))
+		if ((columna != 'c') && (columna != 'f')) {
 			throw new IllegalArgumentException("ERROR: Columna no válida.");
-		if (color.equals(Color.NEGRO))
+		}
+		if (color.equals(Color.NEGRO)) {
 			posicion = new Posicion(8, columna);
-		else
+		}
+		else {
 			posicion = new Posicion(1, columna);
+		}
 	}
 
 	// METODOS GET Y SET
@@ -61,15 +68,9 @@ public class Alfil {
 		this.posicion = new Posicion(posicion);
 	}
 
-	/*
-	 * mover(Direccion, int):void Si no puede realizar dicho movimiento, debido a
-	 * que el alfil se sale del tablero, debe lanzar una excepción del tipo
-	 * OperationNotSupportedException con un mensaje adecuado y no modificará la
-	 * posición del alfil. Realiza un commit.
-	 */
-
+	
 	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
-
+		
 		int nuevaFila = 0;
 		char nuevaColumna = 0;
 		
@@ -112,6 +113,7 @@ public class Alfil {
 			// TODO: handle exception
 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
 		} // falta arreglar error- TESTALFIL
+		// No deberia saltar ninguna excepcion ya que los movimientos son válidos
 	}
 
 	@Override
@@ -151,8 +153,5 @@ public class Alfil {
 	@Override
 	public String toString() {
 		return  posicion + ", color=" + color;
-	}
-	
-
-	
+	}	
 }
