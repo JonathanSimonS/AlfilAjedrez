@@ -19,6 +19,7 @@ public class MainApp {
 		mostrarAlfil();
 		mostrarMenu();
 		elegirOpción();
+		elegirColor();
 
 	}
 
@@ -48,9 +49,27 @@ public class MainApp {
 			System.out.println("~~~~~~~0-4~~~~~~~ ");
 			System.out.println("");
 			opcion = Entrada.entero();
-		} while (opcion<0 || opcion>4);
+		} while (opcion < 0 || opcion > 4);
 
 		return opcion;
+	}
+
+	private static Color elegirColor() {
+		int opcion;
+		do {
+			System.out.println("Elige un color: ");
+			System.out.println("~~~~~~~~~~~~~~~ ");
+			System.out.println("0. BLANCO");
+			System.out.println("1. NEGRO");
+			System.out.println("");
+			opcion = Entrada.entero();
+		} while (opcion != 0 && opcion != 1);
+
+		if (opcion == 1)
+			return Color.NEGRO;
+		else
+			return Color.BLANCO;
+
 	}
 
 }
