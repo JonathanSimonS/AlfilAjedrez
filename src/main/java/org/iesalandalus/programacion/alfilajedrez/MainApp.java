@@ -16,16 +16,13 @@ public class MainApp {
 		 * 
 		 */
 		int opcion;
-		//mostrarAlfil();
+		mostrarAlfil();
 		mostrarMenu();
 		elegirOpción();
 		elegirColor();
 		elegirColumnaInicial();
-		
-		
-		
-		
-		
+		mostrarMenuDirecciones();
+
 	}
 
 	private static void mostrarAlfil() {
@@ -94,7 +91,7 @@ public class MainApp {
 		else
 			return 'c';
 	}
-	
+
 	private static void mostrarMenuDirecciones() {
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("Menú con las diferentes direcciones: ");
@@ -107,4 +104,34 @@ public class MainApp {
 		System.out.println("");
 	}
 
+	private static Direccion elegirDireccion() {
+		
+		int opcion;
+		do {
+			System.out.println("Elige una dirección");
+			System.out.println("~~~~~~~~~~~~~~~~~~~");
+			System.out.println("~~~~~~~~1-4~~~~~~~~");
+			System.out.println("");
+			opcion = Entrada.entero();
+		} while (opcion < 1 || opcion > 4);
+
+		Direccion direccion = Direccion.ABAJO_DERECHA;
+		switch (opcion) {
+		case 1:
+			direccion  = Direccion.ARRIBA_DERECHA;
+			break;
+		case 2:
+			direccion = Direccion.ARRIBA_IZQUIERDA;
+			break;
+		case 3:
+			direccion = Direccion.ABAJO_DERECHA;
+			break;
+		case 4:
+			direccion = Direccion.ABAJO_IZQUIERDA;
+			break;
+		default:
+			break;
+		}
+		return direccion;
+	}
 }
