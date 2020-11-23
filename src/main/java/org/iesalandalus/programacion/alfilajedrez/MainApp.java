@@ -134,4 +134,13 @@ public class MainApp {
 		}
 		return direccion;
 	}
+	
+	private static void crearAlfilDefecto() {
+		Alfil alfil;
+		alfil=new Alfil();
+	}
+	
+	
+	
+	
 }
