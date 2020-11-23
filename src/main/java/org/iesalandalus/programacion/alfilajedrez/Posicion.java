@@ -7,7 +7,7 @@ public class Posicion {
 	private char columna;
 
 	// CONTRUCTORES
-	public Posicion(int fila, char columna) throws IllegalArgumentException {
+	public Posicion(int fila, char columna)  {
 		setFila(fila);
 		setColumna(columna);
 	}

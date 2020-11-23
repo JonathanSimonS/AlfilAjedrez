@@ -13,13 +13,13 @@ public class Alfil {
 
 	// CONTRUCTORES
 	public Alfil() {
-		
+
 		color = Color.NEGRO;
 		posicion = new Posicion(8, 'f');
 	}
 
 	public Alfil(Color color) {
-		
+
 		if (color == null)
 			throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
 		setColor(color);
@@ -30,7 +30,7 @@ public class Alfil {
 	}
 
 	public Alfil(Color color, char columna) {
-		
+
 		if (color == null)
 			throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
 		setColor(color);
@@ -39,8 +39,7 @@ public class Alfil {
 		}
 		if (color.equals(Color.NEGRO)) {
 			posicion = new Posicion(8, columna);
-		}
-		else {
+		} else {
 			posicion = new Posicion(1, columna);
 		}
 	}
@@ -68,39 +67,38 @@ public class Alfil {
 		this.posicion = new Posicion(posicion);
 	}
 
-	
 	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
-		
+
 		int nuevaFila = 0;
 		char nuevaColumna = 0;
-		
+
 		if (direccion == null)
 			throw new NullPointerException("ERROR: La dirección no puede ser nula.");
 		this.direccion = direccion;
 
-		if (pasos <=0)
+		if (pasos <= 0)
 			throw new IllegalArgumentException("ERROR: El número de pasos debe ser positivo.");
 		this.pasos = pasos;
 
 		switch (direccion) {
 		case ABAJO_DERECHA:
-			nuevaFila-=nuevaFila;
-			nuevaColumna+=nuevaColumna;
+			nuevaFila -= nuevaFila;
+			nuevaColumna += nuevaColumna;
 			// suma columna, resta fila
 			break;
 		case ABAJO_IZQUIERDA:
-			nuevaFila-=nuevaFila;
-			nuevaColumna-=nuevaColumna;
+			nuevaFila -= nuevaFila;
+			nuevaColumna -= nuevaColumna;
 			// resta columna, resta fila
 			break;
 		case ARRIBA_DERECHA:
-			nuevaFila+=nuevaFila;
-			nuevaColumna+=nuevaColumna;
+			nuevaFila += nuevaFila;
+			nuevaColumna += nuevaColumna;
 			// suma columna, suma fila
 			break;
 		case ARRIBA_IZQUIERDA:
-			nuevaFila+=nuevaFila;
-			nuevaColumna-=nuevaColumna;
+			nuevaFila += nuevaFila;
+			nuevaColumna -= nuevaColumna;
 			// resta columna, suma fila
 			break;
 		default:
@@ -108,12 +106,11 @@ public class Alfil {
 
 		// capturo la posible excepción de la clase Posición
 		try {
-			setPosicion(new Posicion(nuevaFila, nuevaColumna)); 
+			setPosicion(new Posicion(nuevaFila, nuevaColumna));
 		} catch (IllegalArgumentException e) {
-			// TODO: handle exception
 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
 		} // falta arreglar error- TESTALFIL
-		// No deberia saltar ninguna excepcion ya que los movimientos son válidos
+			// No deberia saltar ninguna excepcion ya que los movimientos son válidos
 	}
 
 	@Override
@@ -152,6 +149,6 @@ public class Alfil {
 
 	@Override
 	public String toString() {
-		return  posicion + ", color=" + color;
-	}	
+		return posicion + ", color=" + color;
+	}
 }

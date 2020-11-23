@@ -1,32 +1,31 @@
 package org.iesalandalus.programacion.alfilajedrez;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.iesalandalus.programacion.utilidades.Entrada;
+
 
 public class MainApp {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		/*
-		 * Después de cada operación se nos mostrará el estado actual de nuestro alfil.
-		 * 
-		 * El menú se repetirá mientras no elijamos la opción salir.
-		 * 
-		 * Se debe validar que todas las entradas al programa son correctas
-		 * 
-		 */
 		int opcion;
-		mostrarAlfil();
-		mostrarMenu();
-		elegirOpción();
-		elegirColor();
-		elegirColumnaInicial();
-		mostrarMenuDirecciones();
-
+		do {
+			
+			mostrarMenu();
+			opcion=elegirOpción();
+			ejecutarOpcion(opcion);	
+			
+		} while (opcion!=0);
+		
+		System.out.println("Muchas gracias. Hasta luego. ");
 	}
-
+	
 	private static void mostrarAlfil() {
+		System.out.println("");
 		System.out.println(Alfil.alfil);
+		System.out.println("");
 	}
 
 	private static void mostrarMenu() {
@@ -36,7 +35,7 @@ public class MainApp {
 		System.out.println("");
 		System.out.println("1.Crear un alfil por defecto. ");
 		System.out.println("2.Crear un alfil de un color. ");
-		System.out.println("3.Crear un alfil de un color en una columna inicial dada ('c' o 'f'). ");
+		System.out.println("3.Crear un alfil de un color y una columna. ");
 		System.out.println("4.Mover el alfil.");
 		System.out.println("");
 		System.out.println("0. Salir");
@@ -137,30 +136,52 @@ public class MainApp {
 
 	private static void crearAlfilDefecto() {
 		Alfil.alfil = new Alfil();
+		mostrarAlfil();
 	}
 
 	private static void crearAlfilColor() {
 		Alfil.alfil = new Alfil(elegirColor());
+		mostrarAlfil();
 	}
 
 	private static void crearAlfilColorColumna() {
 		Alfil.alfil = new Alfil(elegirColor(), elegirColumnaInicial());
+		mostrarAlfil();
 	}
-	/*
-	 * void mover(): Mostrará un menú con las posibles direcciones, nos preguntará
-	 * por la dirección y la cantidad de pasos a mover y moverá el alfil según esos
-	 * parámetros. Este método debe utilizar métodos ya implementados anteriormente.
-	 * Realiza un commit.
-	 */
 
 	private static void mover() {
-		mostrarMenuDirecciones();
-		elegirDireccion();
-	//mover(Direccion direccion, int pasos)		
+//		try {
+			int pasos =0;
+		
+			mostrarMenuDirecciones();
+			elegirDireccion();
+			System.out.println("Cuantos pasos mueves?");
+			pasos=Entrada.entero();
+			
+			mostrarAlfil();
+			// mover(Direccion direccion, int pasos)
+//		} catch (OperationNotSupportedException e) {
+//			System.out.println(e.getMessage());
+//		}
 	}
-	
-	
-	
-	
-	
+
+	private static void ejecutarOpcion(int opcion) {
+		switch (opcion) {
+		case 1: // Creo alfil por defecto
+			crearAlfilDefecto();
+			break;
+		case 2: // Creo alfil eligiendo color
+			crearAlfilColor();
+			break;
+		case 3: // Creo alfil eligiendo color y columna
+			crearAlfilColorColumna();
+			break;
+		case 4: // mover el alfil
+			mover();
+			break;
+		default: //salir
+			break;
+		}
+	}
+
 }
