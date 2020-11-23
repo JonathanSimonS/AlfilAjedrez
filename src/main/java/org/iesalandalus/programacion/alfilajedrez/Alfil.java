@@ -114,6 +114,41 @@ public class Alfil {
 		} // falta arreglar error- TESTALFIL
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
+		result = prime * result + pasos;
+		result = prime * result + ((posicion == null) ? 0 : posicion.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alfil other = (Alfil) obj;
+		if (color != other.color)
+			return false;
+		if (direccion != other.direccion)
+			return false;
+		if (pasos != other.pasos)
+			return false;
+		if (posicion == null) {
+			if (other.posicion != null)
+				return false;
+		} else if (!posicion.equals(other.posicion))
+			return false;
+		return true;
+	}
+
+	
 	
 
 	
