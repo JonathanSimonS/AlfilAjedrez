@@ -94,5 +94,17 @@ public class MainApp {
 		else
 			return 'c';
 	}
+	
+	private static void mostrarMenuDirecciones() {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("Menú con las diferentes direcciones: ");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("");
+		System.out.println("1.Arriba a la derecha. ");
+		System.out.println("2.Arriba a la izquierda. ");
+		System.out.println("3.Abajo a la derecha. ");
+		System.out.println("4.Abajo a la izquierda. ");
+		System.out.println("");
+	}
 
 }
