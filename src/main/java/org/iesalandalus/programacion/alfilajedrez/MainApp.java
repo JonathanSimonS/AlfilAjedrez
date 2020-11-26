@@ -4,27 +4,32 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.utilidades.Entrada;
 
-
 public class MainApp {
+
+	private static Alfil alfil;
+
+	public MainApp() {
+		alfil = new Alfil();
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		int opcion;
 		do {
-			
+
 			mostrarMenu();
-			opcion=elegirOpción();
-			ejecutarOpcion(opcion);	
-			
-		} while (opcion!=0);
-		
+			opcion = elegirOpción();
+			ejecutarOpcion(opcion);
+
+		} while (opcion != 0);
+
+		System.out.println("");
 		System.out.println("Muchas gracias. Hasta luego. ");
 	}
-	
+
 	private static void mostrarAlfil() {
-		System.out.println("");
-		System.out.println(Alfil.alfil);
+		System.out.println(alfil);
 		System.out.println("");
 	}
 
@@ -55,6 +60,37 @@ public class MainApp {
 		return opcion;
 	}
 
+	private static void ejecutarOpcion(int opcion) {
+		switch (opcion) {
+		case 1: // Creo alfil por defecto
+			crearAlfilDefecto();
+			break;
+		case 2: // Creo alfil eligiendo color
+			crearAlfilColor();
+			break;
+		case 3: // Creo alfil eligiendo color y columna
+			crearAlfilColorColumna();
+			break;
+		case 4: // mover el alfil
+			mover();
+			break;
+		default: // salir
+			break;
+		}
+	}
+
+	private static void crearAlfilDefecto() {
+		alfil = new Alfil();
+		System.out.println("Alfil creado por defecto: ");
+		mostrarAlfil();
+	}
+
+	private static void crearAlfilColor() {
+		alfil = new Alfil(elegirColor());
+		System.out.println("Alfil del color elegido: ");
+		mostrarAlfil();
+	}
+
 	private static Color elegirColor() {
 		int opcion;
 		do {
@@ -74,6 +110,12 @@ public class MainApp {
 
 	}
 
+	private static void crearAlfilColorColumna() {
+		alfil = new Alfil(elegirColor(), elegirColumnaInicial());
+		System.out.println("Alfil del color y la columna elegida: ");
+		mostrarAlfil();
+	}
+
 	private static char elegirColumnaInicial() {
 		int opcion;
 		do {
@@ -89,6 +131,23 @@ public class MainApp {
 			return 'f';
 		else
 			return 'c';
+	}
+
+	private static void mover() {
+
+		try { // Intentamos hacer todo esto
+			Direccion direccion;
+			int pasos = 0;
+			mostrarMenuDirecciones();
+			direccion = elegirDireccion();
+			System.out.println("Cuantos pasos mueves?");
+			pasos = Entrada.entero();
+			alfil.mover(direccion, pasos);
+			mostrarAlfil();
+			// Si no se puede pues capturamos y mostramos el mensaje
+		} catch (NullPointerException | OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private static void mostrarMenuDirecciones() {
@@ -108,8 +167,6 @@ public class MainApp {
 		int opcion;
 		do {
 			System.out.println("Elige una dirección");
-			System.out.println("~~~~~~~~~~~~~~~~~~~");
-			System.out.println("~~~~~~~~1-4~~~~~~~~");
 			System.out.println("");
 			opcion = Entrada.entero();
 		} while (opcion < 1 || opcion > 4);
@@ -133,55 +190,4 @@ public class MainApp {
 		}
 		return direccion;
 	}
-
-	private static void crearAlfilDefecto() {
-		Alfil.alfil = new Alfil();
-		mostrarAlfil();
-	}
-
-	private static void crearAlfilColor() {
-		Alfil.alfil = new Alfil(elegirColor());
-		mostrarAlfil();
-	}
-
-	private static void crearAlfilColorColumna() {
-		Alfil.alfil = new Alfil(elegirColor(), elegirColumnaInicial());
-		mostrarAlfil();
-	}
-
-	private static void mover() {
-//		try {
-			int pasos =0;
-		
-			mostrarMenuDirecciones();
-			elegirDireccion();
-			System.out.println("Cuantos pasos mueves?");
-			pasos=Entrada.entero();
-			
-			mostrarAlfil();
-			// mover(Direccion direccion, int pasos)
-//		} catch (OperationNotSupportedException e) {
-//			System.out.println(e.getMessage());
-//		}
-	}
-
-	private static void ejecutarOpcion(int opcion) {
-		switch (opcion) {
-		case 1: // Creo alfil por defecto
-			crearAlfilDefecto();
-			break;
-		case 2: // Creo alfil eligiendo color
-			crearAlfilColor();
-			break;
-		case 3: // Creo alfil eligiendo color y columna
-			crearAlfilColorColumna();
-			break;
-		case 4: // mover el alfil
-			mover();
-			break;
-		default: //salir
-			break;
-		}
-	}
-
 }

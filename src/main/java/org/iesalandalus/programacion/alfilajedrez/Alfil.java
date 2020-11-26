@@ -9,7 +9,6 @@ public class Alfil {
 	private Posicion posicion;
 	private Direccion direccion;
 	private int pasos;
-	public static Alfil alfil;
 
 	// CONTRUCTORES
 	public Alfil() {
@@ -19,7 +18,6 @@ public class Alfil {
 	}
 
 	public Alfil(Color color) {
-
 		if (color == null)
 			throw new NullPointerException("ERROR: No se puede asignar un color nulo.");
 		setColor(color);
@@ -68,10 +66,15 @@ public class Alfil {
 	}
 
 	public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
-
-		int nuevaFila = 0;
-		char nuevaColumna = 0;
-
+		
+		//Declaro variables
+		int nuevaFila;
+		char nuevaColumna;
+		
+		//Damos a las variables el valor inicial de get
+		nuevaFila=posicion.getFila();
+		nuevaColumna=posicion.getColumna();
+	
 		if (direccion == null)
 			throw new NullPointerException("ERROR: La dirección no puede ser nula.");
 		this.direccion = direccion;
@@ -82,35 +85,34 @@ public class Alfil {
 
 		switch (direccion) {
 		case ABAJO_DERECHA:
-			nuevaFila -= nuevaFila;
-			nuevaColumna += nuevaColumna;
+			nuevaFila -= pasos;
+			nuevaColumna += pasos;
 			// suma columna, resta fila
 			break;
 		case ABAJO_IZQUIERDA:
-			nuevaFila -= nuevaFila;
-			nuevaColumna -= nuevaColumna;
+			nuevaFila -= pasos;
+			nuevaColumna -= pasos;
 			// resta columna, resta fila
 			break;
 		case ARRIBA_DERECHA:
-			nuevaFila += nuevaFila;
-			nuevaColumna += nuevaColumna;
+			nuevaFila += pasos;
+			nuevaColumna += pasos;
 			// suma columna, suma fila
 			break;
 		case ARRIBA_IZQUIERDA:
-			nuevaFila += nuevaFila;
-			nuevaColumna -= nuevaColumna;
+			nuevaFila += pasos;
+			nuevaColumna -= pasos;
 			// resta columna, suma fila
 			break;
 		default:
 		}
 
-		// capturo la posible excepción de la clase Posición
+		// Capturo la posible excepción de la clase Posición
 		try {
 			setPosicion(new Posicion(nuevaFila, nuevaColumna));
 		} catch (IllegalArgumentException e) {
 			throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-		} // falta arreglar error- TESTALFIL
-			// No deberia saltar ninguna excepcion ya que los movimientos son válidos
+		}
 	}
 
 	@Override
